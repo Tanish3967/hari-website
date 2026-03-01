@@ -7,8 +7,8 @@ export const dynamic = 'force-dynamic'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Dr. Smith - Clinic & Portfolio',
-  description: 'Book your appointment today with Dr. Smith. Professional healthcare and clinic management.',
+  title: 'SBK Healthcare Centre',
+  description: 'Book your appointment today. Professional healthcare and clinic management.',
 }
 
 export default function RootLayout({

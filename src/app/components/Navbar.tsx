@@ -6,7 +6,7 @@ export default function Navbar() {
         <nav className="border-b bg-white/50 backdrop-blur-md sticky top-0 z-50">
             <div className="container mx-auto flex h-16 items-center justify-between px-4">
                 <Link href="/" className="text-xl font-bold tracking-tight text-slate-900">
-                    Dr. Smith Clinic
+                    SBK Healthcare Centre
                 </Link>
                 <div className="hidden md:flex gap-6 items-center">
                     <Link href="/" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Home</Link>

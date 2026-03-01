@@ -100,7 +100,7 @@ export default function Login() {
             <div className="w-full max-w-md">
 
                 <div className="text-center mb-8">
-                    <h1 className="text-2xl font-bold tracking-tight text-slate-900">Dr. Smith Clinic</h1>
+                    <h1 className="text-2xl font-bold tracking-tight text-slate-900">SBK Healthcare Centre</h1>
                     <p className="text-slate-500 mt-2">Doctor & Staff Portal</p>
                 </div>
 
@@ -130,7 +130,7 @@ export default function Login() {
                                     <Input
                                         id="email"
                                         type="email"
-                                        placeholder="doctor@clinic.com"
+                                        placeholder="admin@sbkhealthcare.com"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         required

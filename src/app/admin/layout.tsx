@@ -42,7 +42,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
             {/* Mobile Header */}
             <div className="md:hidden bg-slate-900 text-white p-4 flex justify-between items-center sticky top-0 z-50">
-                <div className="font-bold text-lg">Clinic Admin</div>
+                <div className="font-bold text-lg">SBK Healthcare Centre</div>
                 <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2">
                     {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                 </button>
@@ -54,8 +54,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         md:flex flex-col w-full md:w-64 bg-slate-900 text-slate-300 min-h-screen fixed md:sticky top-0 z-40 transition-all
       `}>
                 <div className="p-6 border-b border-slate-800 hidden md:block">
-                    <h2 className="text-white font-bold text-xl tracking-tight">Clinic Portal</h2>
-                    <p className="text-slate-400 text-sm mt-1">Management System</p>
+                    <h2 className="text-white font-bold text-xl tracking-tight">SBK Healthcare Centre</h2>
+                    <p className="text-slate-400 text-sm mt-1">Management Portal</p>
                 </div>
 
                 <div className="p-6 border-b border-slate-800 flex items-center">

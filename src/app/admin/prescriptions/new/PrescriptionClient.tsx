@@ -372,7 +372,7 @@ export default function PrescriptionClient() {
                             {/* Header / Letterhead */}
                             <div className="flex justify-between items-start border-b-2 border-[#0f172a] pb-6 mb-6">
                                 <div>
-                                    <h1 className="text-3xl font-black text-[#0f172a] truncate">DR. SMITH CLINIC</h1>
+                                    <h1 className="text-3xl font-black text-[#0f172a] truncate">SBK HEALTHCARE CENTRE</h1>
                                     <p className="text-sm font-semibold text-[#334155] mt-1">Dr. John Smith, MD, FACP</p>
                                     <p className="text-xs text-[#64748b]">Board Certified General Physician</p>
                                     <p className="text-xs text-[#64748b] mt-1">Reg No: MED-12345-NY</p>
@@ -381,7 +381,7 @@ export default function PrescriptionClient() {
                                     <p>123 Health Avenue, Medical District</p>
                                     <p>Cityville, ST 12345</p>
                                     <p className="mt-1 font-semibold">Ph: 1-800-123-4567</p>
-                                    <p>info@drsmithclinic.com</p>
+                                    <p>info@sbkhealthcare.com</p>
                                 </div>
                             </div>
 
