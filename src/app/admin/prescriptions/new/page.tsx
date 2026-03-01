@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useEffect, useRef, Suspense } from "react"
-import { useSearchParams, useRouter } from "next/navigation"
+import { useState, useEffect, useRef } from "react"
+import { useRouter } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -28,10 +28,9 @@ type Medicine = {
     instructions: string
 }
 
-function NewPrescriptionContent() {
-    const searchParams = useSearchParams()
-    const patientId = searchParams.get('patientId')
+export default function NewPrescriptionPage() {
     const router = useRouter()
+    const [patientId, setPatientId] = useState<string | null>(null)
     const supabase = createClient()
 
     const [patient, setPatient] = useState<Patient | null>(null)
@@ -50,19 +49,25 @@ function NewPrescriptionContent() {
     const printRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        if (!patientId) {
+        // Extract patientId safely on the client side only to bypass Next.js SSR Suspense errors
+        const queryParams = new URLSearchParams(window.location.search)
+        const pid = queryParams.get('patientId')
+
+        if (!pid) {
             router.push('/admin/patients')
             return
         }
 
-        async function fetchPatientAndInit() {
+        setPatientId(pid)
+
+        async function fetchPatientAndInit(id: string) {
             try {
                 setLoading(true)
                 // Fetch patient
                 const { data, error } = await supabase
                     .from('patients')
                     .select('*')
-                    .eq('id', patientId)
+                    .eq('id', id)
                     .single()
 
                 if (error) throw error
@@ -83,8 +88,8 @@ function NewPrescriptionContent() {
             }
         }
 
-        fetchPatientAndInit()
-    }, [patientId, router])
+        fetchPatientAndInit(pid)
+    }, [router, supabase])
 
     const addMedicine = () => {
         setMedicines([...medicines, { name: "", dosage: "", frequency: "", duration: "", instructions: "" }])
@@ -482,13 +487,5 @@ function NewPrescriptionContent() {
 
             </div>
         </div>
-    )
-}
-
-export default function NewPrescriptionPage() {
-    return (
-        <Suspense fallback={<div className="flex h-screen items-center justify-center p-8"><Loader2 className="w-8 h-8 animate-spin text-slate-400" /></div>}>
-            <NewPrescriptionContent />
-        </Suspense>
     )
 }
