@@ -70,36 +70,24 @@ export default function BookAppointment() {
         const notes = formData.get("notes") as string;
 
         try {
-            const supabase = createClient();
+            const response = await fetch('/api/book', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    date,
+                    selectedSlot,
+                    DOCTOR_ID,
+                    patientData,
+                    notes
+                }),
+            });
 
-            // 1. Create or find patient
-            // For simplicity, creating a new patient record here.
-            // In production, we'd check if phone exists first.
-            const { data: patient, error: patientError } = await supabase
-                .from('patients')
-                .insert([patientData])
-                .select()
-                .single();
+            const result = await response.json();
 
-            if (patientError) throw patientError;
-
-            // 2. Book appointment (Database UNIQUE constraint handles race conditions)
-            const { error: appointmentError } = await supabase
-                .from('appointments')
-                .insert([{
-                    doctor_id: DOCTOR_ID,
-                    patient_id: patient.id,
-                    appointment_date: date,
-                    appointment_time: `${selectedSlot}:00`, // Postgres expects HH:mm:ss
-                    notes: notes,
-                    status: 'pending'
-                }]);
-
-            if (appointmentError) {
-                if (appointmentError.code === '23505') { // Unique violation
-                    throw new Error("This slot was just booked by someone else. Please choose another time.");
-                }
-                throw appointmentError;
+            if (!response.ok) {
+                throw new Error(result.error || "Failed to book appointment");
             }
 
             setSuccess(true);
