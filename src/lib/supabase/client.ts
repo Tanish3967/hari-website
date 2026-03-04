@@ -46,7 +46,8 @@ export function createClient() {
       auth: {
         // Prevent background socket connections for auth
         detectSessionInUrl: true,
-        autoRefreshToken: true,
+        autoRefreshToken: false,
+        persistSession: false,
         // Wrap local storage in a try-catch to permanently fix DOMException
         storage: getSafeStorage(),
       }
