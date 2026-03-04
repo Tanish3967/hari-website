@@ -30,6 +30,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         { name: "Appointments", href: "/admin/appointments", icon: <CalendarCheck className="w-5 h-5 mr-3" /> },
         { name: "Patients & Walk-ins", href: "/admin/patients", icon: <Users className="w-5 h-5 mr-3" /> },
         { name: "Prescriptions", href: "/admin/prescriptions", icon: <FileText className="w-5 h-5 mr-3" /> },
+        { name: "Security Settings", href: "/admin/settings/mfa", icon: <Settings className="w-5 h-5 mr-3" /> },
     ]
 
     const handleLogout = async () => {
